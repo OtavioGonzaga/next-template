@@ -29,14 +29,19 @@ export default async function RootLayout({
 			<NextIntlClientProvider>
 				<ThemeProvider>
 					<body
-						style={{ height: '10000px' }}
-						className={`${inter.variable} relative transition-colors antialiased bg-background dark:text-white dark:bg-dark-background  flex p-5`}
+						className={`${inter.variable} relative w-full overflow-x-hidden transition-colors antialiased bg-background dark:text-white dark:bg-dark-background h-screen flex flex-col`}
 					>
 						<SideMenuProvider>
-							<Sidebar />
+							<div className="flex h-full">
+								<Sidebar />
+								<div className="flex flex-col flex-1">
+									<Header />
+									<main className="flex-1 p-8 overflow-auto">
+										{children}
+									</main>
+								</div>
+							</div>
 						</SideMenuProvider>
-						<Header />
-						{/* <main>{children}</main> */}
 					</body>
 				</ThemeProvider>
 			</NextIntlClientProvider>

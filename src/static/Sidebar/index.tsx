@@ -15,7 +15,7 @@ export function Sidebar() {
 	const pathname = usePathname();
 
 	return (
-		<aside className="sidebar h-[calc(100dvh-40px)] sticky top-5 overflow-hidden transform ease-in-out duration-300 bg-white dark:bg-gray-900 min-w-80 rounded-4xl shadow-md flex flex-col">
+		<aside className="sidebar h-[calc(100dvh-40px)] sticky top-5 overflow-hidden transform ease-in-out duration-300 bg-white dark:bg-gray-900 min-w-80 rounded-4xl shadow-md ms-5 flex flex-col flex-shrink-0">
 			<div className="flex items-center py-8 px-6 h-20 full-logo">
 				<Link href="/">
 					<Image

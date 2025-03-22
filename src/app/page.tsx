@@ -1,5 +1,3 @@
-import { ThemeSwitcher } from '@components/ThemeSwitcher';
-
-export default function Home() {
-	return <ThemeSwitcher />;
+export default function Dashboard() {
+	return <></>;
 }
