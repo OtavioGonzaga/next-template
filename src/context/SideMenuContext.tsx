@@ -14,7 +14,11 @@ export interface SideMenuItem {
 	icon: React.ReactNode;
 }
 
-const SideMenuContext = createContext<{ items: Array<SideMenuItem> }>({
+interface SideMenuContextProps {
+	items: Array<SideMenuItem>;
+}
+
+const SideMenuContext = createContext<SideMenuContextProps>({
 	items: [],
 });
 
@@ -44,7 +48,12 @@ export function SideMenuProvider({
 		[t],
 	);
 
-	const value = useMemo(() => ({ items }), [items]);
+	const value: SideMenuContextProps = useMemo(
+		() => ({
+			items,
+		}),
+		[items],
+	);
 
 	return (
 		<SideMenuContext.Provider value={value}>

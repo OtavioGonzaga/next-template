@@ -7,6 +7,7 @@ import { LogoutOutlined } from '@mui/icons-material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import './index.css';
 
 export function Sidebar() {
 	const { theme } = useTheme();
@@ -14,25 +15,38 @@ export function Sidebar() {
 	const pathname = usePathname();
 
 	return (
-		<aside className="bg-white dark:bg-gray-900 h-full w-80 rounded-4xl shadow-2xl flex flex-col">
-			<div className="flex items-center py-8 px-6 h-24">
+		<aside className="sidebar h-[calc(100dvh-40px)] sticky top-5 overflow-hidden transform ease-in-out duration-300 bg-white dark:bg-gray-900 min-w-80 rounded-4xl shadow-md flex flex-col">
+			<div className="flex items-center py-8 px-6 h-20 full-logo">
 				<Link href="/">
 					<Image
-						src={theme === 'light' ? 'logo.svg' : 'logoWhite.svg'}
+						src={
+							theme === 'light'
+								? 'fullLogo.svg'
+								: 'fullLogoWhite.svg'
+						}
 						alt="Next.JS"
-						className="fill-black"
 						width={120}
 						height={0}
 					/>
 				</Link>
 			</div>
-			<nav className="mt-4 flex-7/12">
+			<div className="flex items-center py-5 px-4 h-20 logo">
+				<Link href="/">
+					<Image
+						src={theme === 'light' ? 'logo.svg' : 'logoWhite.svg'}
+						alt="Next.JS"
+						width={40}
+						height={0}
+					/>
+				</Link>
+			</div>
+			<nav className="mt-8 flex-7/12">
 				<ul>
 					{items.map((item) => (
 						<li key={item.title}>
 							<Link href={item.path}>
 								<div
-									className={`sidebar-item p-4 me-8 rounded-e-4xl hover:text-secondary hover:bg-gray-200 duration-300 mb-2 ${
+									className={`sidebar-item text-nowrap overflow-hidden px-4 py-3 me-8 rounded-e-4xl hover:text-secondary hover:bg-gray-200 duration-300 ${
 										pathname === item.path ? 'active' : ''
 									}`}
 								>
@@ -48,11 +62,13 @@ export function Sidebar() {
 			</nav>
 
 			<div className="flex-2/12 flex flex-col justify-end pb-16">
-				<LanguageSelector />
+				<div className="language-selector">
+					<LanguageSelector />
+				</div>
 
-				<span className="mt-8 cursor-pointer ms-2 p-4 hover:text-secondary transition mb-2">
+				<span className="sidebar-item overflow-hidden text-nowrap mt-8 cursor-pointer p-4 hover:text-secondary transition mb-2">
 					<LogoutOutlined />
-					<span className="ms-3 font-semibold">{'Sair'}</span>
+					<span className="ms-2 font-semibold">{'Sair'}</span>
 				</span>
 			</div>
 		</aside>

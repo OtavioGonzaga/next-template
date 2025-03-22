@@ -6,6 +6,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
+import { Header } from '@static/Header';
 
 const inter = Inter({
 	variable: '--font-inter',
@@ -28,12 +29,14 @@ export default async function RootLayout({
 			<NextIntlClientProvider>
 				<ThemeProvider>
 					<body
-						className={`${inter.variable} transition-colors antialiased bg-background dark:text-white dark:bg-dark-background h-screen flex overflow-scroll p-5`}
+						style={{ height: '10000px' }}
+						className={`${inter.variable} relative transition-colors antialiased bg-background dark:text-white dark:bg-dark-background  flex p-5`}
 					>
 						<SideMenuProvider>
 							<Sidebar />
 						</SideMenuProvider>
-						<main>{children}</main>
+						<Header />
+						{/* <main>{children}</main> */}
 					</body>
 				</ThemeProvider>
 			</NextIntlClientProvider>
