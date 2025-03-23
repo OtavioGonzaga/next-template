@@ -25,6 +25,8 @@ const ptBr: Translations = {
 	fields: {
 		selectEntity: 'Selecione o {{entity}}',
 	},
+
+	allRights: 'Todos os direitos reservados.',
 };
 
 export default ptBr;

@@ -23,4 +23,6 @@ export type Translations = {
 	fields: {
 		selectEntity: string;
 	};
+
+	allRights: string;
 };

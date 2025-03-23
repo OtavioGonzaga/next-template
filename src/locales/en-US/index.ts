@@ -25,6 +25,8 @@ const enUs: Translations = {
 	fields: {
 		selectEntity: 'Select the {{entity}}',
 	},
+
+	allRights: 'All rights reserved.',
 };
 
 export default enUs;

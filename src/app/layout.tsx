@@ -7,9 +7,11 @@ import './globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 import { Header } from '@static/Header';
+import { Footer } from '@static/Footer';
 
 const inter = Inter({
 	variable: '--font-inter',
+	subsets: ['latin'],
 });
 
 export const metadata: Metadata = {
@@ -29,19 +31,20 @@ export default async function RootLayout({
 			<NextIntlClientProvider>
 				<ThemeProvider>
 					<body
-						className={`${inter.variable} relative w-full overflow-x-hidden transition-colors antialiased bg-background dark:text-white dark:bg-dark-background h-screen flex flex-col`}
+						className={`${inter.variable} relative overflow-x-hidden transition-colors antialiased bg-background dark:text-white dark:bg-dark-background h-screen flex flex-col`}
 					>
-						<SideMenuProvider>
-							<div className="flex h-full">
+						<div className="flex h-full">
+							<SideMenuProvider>
 								<Sidebar />
-								<div className="flex flex-col flex-1">
-									<Header />
-									<main className="flex-1 p-8 overflow-auto">
-										{children}
-									</main>
-								</div>
+							</SideMenuProvider>
+							<div className="flex flex-col flex-1">
+								<Header />
+								<main className="flex-1 p-6 overflow-auto mt-4">
+									{children}
+									<Footer />
+								</main>
 							</div>
-						</SideMenuProvider>
+						</div>
 					</body>
 				</ThemeProvider>
 			</NextIntlClientProvider>
