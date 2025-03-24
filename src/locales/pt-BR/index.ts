@@ -19,6 +19,7 @@ const ptBr: Translations = {
 		reset: 'Resetar',
 		return: 'Retornar',
 		returnTo: 'Retornar para',
+		login: 'Entrar',
 		logout: 'Sair',
 	},
 

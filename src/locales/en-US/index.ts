@@ -19,6 +19,7 @@ const enUs: Translations = {
 		reset: 'Reset',
 		return: 'Return',
 		returnTo: 'Return to',
+		login: 'Login',
 		logout: 'Logout',
 	},
 

@@ -17,6 +17,7 @@ export type Translations = {
 		reset: string;
 		return: string;
 		returnTo: string;
+		login: string;
 		logout: string;
 	};
 

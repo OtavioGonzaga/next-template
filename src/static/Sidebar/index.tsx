@@ -3,15 +3,18 @@
 import { useSideMenu } from '@/context/SideMenuContext';
 import { LanguageSelector } from '@components/LanguageSelector';
 import { useTheme } from '@context/ThemeContext';
-import { LogoutOutlined } from '@mui/icons-material';
+import { LoginOutlined, LogoutOutlined } from '@mui/icons-material';
+import { signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import './index.css';
+import { useTranslations } from 'next-intl';
 
 export function Sidebar() {
 	const { theme } = useTheme();
 	const { items } = useSideMenu();
+	const t = useTranslations();
 	const pathname = usePathname();
 
 	return (
@@ -66,10 +69,24 @@ export function Sidebar() {
 					<LanguageSelector />
 				</div>
 
-				<span className="sidebar-item overflow-hidden text-nowrap mt-8 cursor-pointer p-4 hover:text-secondary transition mb-2">
+				<button
+					onClick={() => signOut()}
+					className="text-start sidebar-item overflow-hidden text-nowrap ms-5 mt-8 cursor-pointer hover:text-secondary transition mb-2"
+				>
 					<LogoutOutlined />
-					<span className="ms-2 font-semibold">{'Sair'}</span>
-				</span>
+					<span className="ms-2 font-semibold">
+						{t('actions.logout')}
+					</span>
+				</button>
+				<button
+					onClick={() => signIn('keycloak')}
+					className="text-start sidebar-item overflow-hidden text-nowrap ms-5 mt-8 cursor-pointer hover:text-secondary transition mb-2"
+				>
+					<LoginOutlined />
+					<span className="ms-2 font-semibold">
+						{t('actions.login')}
+					</span>
+				</button>
 			</div>
 		</aside>
 	);

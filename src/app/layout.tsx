@@ -1,13 +1,13 @@
 import { SideMenuProvider } from '@context/SideMenuContext';
 import { ThemeProvider } from '@context/ThemeContext';
+import { Footer } from '@static/Footer';
+import { Header } from '@static/Header';
 import { Sidebar } from '@static/Sidebar';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
-import { Header } from '@static/Header';
-import { Footer } from '@static/Footer';
+import { Inter } from 'next/font/google';
+import './globals.css';
 
 const inter = Inter({
 	variable: '--font-inter',
@@ -39,7 +39,7 @@ export default async function RootLayout({
 							</SideMenuProvider>
 							<div className="flex flex-col flex-1">
 								<Header />
-								<main className="flex-1 p-6 overflow-auto mt-4">
+								<main className="flex-1 p-6 overflow-auto mt-4 flex flex-col justify-between">
 									{children}
 									<Footer />
 								</main>
