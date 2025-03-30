@@ -1,33 +1,27 @@
-import { getToken } from 'next-auth/jwt';
-import { signIn } from 'next-auth/react';
-import type { NextRequest } from 'next/server';
+import { auth } from '@/auth';
 import { NextResponse } from 'next/server';
 
-export async function middleware(req: NextRequest) {
-	const publicRoutes: Array<string> = ['/api/auth/signin/keycloak'];
+export default auth(async (req) => {
+	const publicRoutes = ['/login', '/register', '/api/auth'];
 
-	if (publicRoutes.includes(req.nextUrl.pathname)) {
-		return NextResponse.next();
+	if (
+		!(
+			req.auth ||
+			publicRoutes.some((pr) => req.nextUrl.pathname.startsWith(pr))
+		)
+	) {
+		const newUrl = new URL('/login', req.nextUrl.origin);
+
+		newUrl.searchParams.set('callbackUrl', req.nextUrl.pathname);
+
+		return NextResponse.redirect(newUrl);
 	}
 
-	const token = await getToken({
-		req,
-		secret: process.env.NEXTAUTH_SECRET,
-	});
+	return NextResponse.next();
+});
 
-	if (!token) {
-		// Se o token não existir, usa o signIn para redirecionar diretamente para o Keycloak
-		const res = NextResponse.redirect(
-			new URL('/api/auth/signin/keycloak', req.url),
-		);
-
-		// O NextAuth usa a função signIn para disparar o login via Keycloak
-		await signIn('keycloak', {
-			redirect: false, // Impede o redirecionamento padrão e usa a lógica do NextResponse
-		});
-
-		return res;
-	}
-
-	return NextResponse.redirect(new URL('/', req.url));
-}
+export const config = {
+	matcher: [
+		'/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.svg).*)',
+	],
+};

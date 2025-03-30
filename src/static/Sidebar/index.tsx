@@ -4,16 +4,17 @@ import { useSideMenu } from '@/context/SideMenuContext';
 import { LanguageSelector } from '@components/LanguageSelector';
 import { useTheme } from '@context/ThemeContext';
 import { LoginOutlined, LogoutOutlined } from '@mui/icons-material';
-import { signIn, signOut } from 'next-auth/react';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import './index.css';
-import { useTranslations } from 'next-intl';
 
 export function Sidebar() {
 	const { theme } = useTheme();
 	const { items } = useSideMenu();
+	const { status } = useSession();
 	const t = useTranslations();
 	const pathname = usePathname();
 
@@ -64,29 +65,45 @@ export function Sidebar() {
 				</ul>
 			</nav>
 
-			<div className="flex-2/12 flex flex-col justify-end pb-16">
+			<div className="flex-2/12 flex flex-col justify-end mb-16 mx-4">
 				<div className="language-selector">
 					<LanguageSelector />
 				</div>
 
-				<button
-					onClick={() => signOut()}
-					className="text-start sidebar-item overflow-hidden text-nowrap ms-5 mt-8 cursor-pointer hover:text-secondary transition mb-2"
-				>
-					<LogoutOutlined />
-					<span className="ms-2 font-semibold">
-						{t('actions.logout')}
-					</span>
-				</button>
-				<button
-					onClick={() => signIn('keycloak')}
-					className="text-start sidebar-item overflow-hidden text-nowrap ms-5 mt-8 cursor-pointer hover:text-secondary transition mb-2"
-				>
-					<LoginOutlined />
-					<span className="ms-2 font-semibold">
-						{t('actions.login')}
-					</span>
-				</button>
+				{status === 'authenticated' && (
+					<button
+						onClick={async () => {
+							document.cookie.split(';').forEach(function (c) {
+								document.cookie = c
+									.replace(/^ +/, '')
+									.replace(
+										/=.*/,
+										'=;expires=' +
+											new Date().toUTCString() +
+											';path=/',
+									);
+							});
+							await signOut();
+						}}
+						className="text-start sidebar-item overflow-hidden text-nowrap mt-8 cursor-pointer hover:text-secondary transition mb-2"
+					>
+						<LogoutOutlined />
+						<span className="ms-2 font-semibold">
+							{t('actions.logout')}
+						</span>
+					</button>
+				)}
+				{status === 'unauthenticated' && (
+					<button
+						onClick={async () => await signIn('keycloak')}
+						className="text-start sidebar-item overflow-hidden text-nowrap mt-8 cursor-pointer hover:text-secondary transition mb-2"
+					>
+						<LoginOutlined />
+						<span className="ms-2 font-semibold">
+							{t('actions.login')}
+						</span>
+					</button>
+				)}
 			</div>
 		</aside>
 	);

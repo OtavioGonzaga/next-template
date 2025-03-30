@@ -16,7 +16,7 @@
 		"@mui/icons-material": "^6.4.8",
 		"@mui/material": "^6.4.8",
 		"next": "15.2.3",
-		"next-auth": "^4.24.11",
+		"next-auth": "^5.0.0-beta.25",
 		"next-intl": "^4.0.2",
 		"postcss": "^8.5.3",
 		"react": "^19.0.0",

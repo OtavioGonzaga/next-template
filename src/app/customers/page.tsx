@@ -1,3 +1,5 @@
+import Loading from '@components/Loading';
+
 export default function Customers() {
-	return <p>Customers</p>;
+	return <Loading />;
 }
