@@ -35,16 +35,16 @@ export default async function RootLayout({
 			<NextIntlClientProvider>
 				<ThemeProvider>
 					<body
-						className={`${inter.variable} relative overflow-x-hidden transition-colors antialiased bg-background dark:text-white dark:bg-dark-background h-screen flex flex-col`}
+						className={`${inter.variable} bg-background dark:bg-dark-background relative flex h-screen flex-col overflow-x-hidden antialiased transition-colors dark:text-white`}
 					>
 						<SessionProvider session={session}>
 							<div className="flex h-full">
 								<SideMenuProvider>
 									<Sidebar />
 								</SideMenuProvider>
-								<div className="flex flex-col flex-1">
+								<div className="flex flex-1 flex-col">
 									<Header />
-									<main className="flex-1 p-6 overflow-auto mt-4 flex flex-col justify-between">
+									<main className="mt-4 flex flex-1 flex-col justify-between overflow-auto p-6">
 										{children}
 										<Footer />
 									</main>

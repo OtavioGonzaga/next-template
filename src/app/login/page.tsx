@@ -13,11 +13,10 @@ export default function Login() {
 
 	useEffect(() => {
 		if (status === 'unauthenticated') {
-			setTimeout(() => {
-				signIn('keycloak', {
-					redirectTo: searchParams?.get('callbackUrl') ?? '/',
-				});
-			}, 1000);
+			signIn('keycloak', {
+				redirectTo: searchParams?.get('callbackUrl') ?? '/',
+				prompt: 'login',
+			});
 		}
 
 		if (status === 'authenticated') {

@@ -19,8 +19,8 @@ export function Sidebar() {
 	const pathname = usePathname();
 
 	return (
-		<aside className="sidebar h-[calc(100dvh-40px)] fixed md:sticky top-5 overflow-hidden transform ease-in-out duration-300 bg-white dark:bg-gray-900 min-w-80 rounded-4xl shadow-md ms-5 flex flex-col flex-shrink-0">
-			<div className="flex items-center py-8 px-6 h-20 full-logo">
+		<aside className="sidebar fixed top-5 ms-5 flex h-[calc(100dvh-40px)] min-w-80 flex-shrink-0 transform flex-col overflow-hidden rounded-4xl bg-white shadow-md duration-300 ease-in-out md:sticky dark:bg-gray-900">
+			<div className="full-logo flex h-20 items-center px-6 py-8">
 				<Link href="/">
 					<Image
 						src={
@@ -34,7 +34,7 @@ export function Sidebar() {
 					/>
 				</Link>
 			</div>
-			<div className="flex items-center py-5 px-4 h-20 logo">
+			<div className="logo flex h-20 items-center px-4 py-5">
 				<Link href="/">
 					<Image
 						src={theme === 'light' ? 'logo.svg' : 'logoWhite.svg'}
@@ -50,7 +50,7 @@ export function Sidebar() {
 						<li key={item.title}>
 							<Link href={item.path}>
 								<div
-									className={`sidebar-item text-nowrap overflow-hidden px-4 py-3 me-8 rounded-e-4xl hover:text-secondary hover:bg-gray-200 duration-300 ${
+									className={`sidebar-item hover:text-secondary me-8 overflow-hidden rounded-e-4xl px-4 py-3 text-nowrap duration-300 hover:bg-gray-200 ${
 										pathname === item.path ? 'active' : ''
 									}`}
 								>
@@ -65,27 +65,15 @@ export function Sidebar() {
 				</ul>
 			</nav>
 
-			<div className="flex-2/12 flex flex-col justify-end mb-16 mx-4">
+			<div className="mx-4 mb-16 flex flex-2/12 flex-col justify-end">
 				<div className="language-selector">
 					<LanguageSelector />
 				</div>
 
 				{status === 'authenticated' && (
 					<button
-						onClick={async () => {
-							document.cookie.split(';').forEach(function (c) {
-								document.cookie = c
-									.replace(/^ +/, '')
-									.replace(
-										/=.*/,
-										'=;expires=' +
-											new Date().toUTCString() +
-											';path=/',
-									);
-							});
-							await signOut();
-						}}
-						className="text-start sidebar-item overflow-hidden text-nowrap mt-8 cursor-pointer hover:text-secondary transition mb-2"
+						onClick={() => signOut()}
+						className="sidebar-item hover:text-secondary mt-8 mb-2 cursor-pointer overflow-hidden text-start text-nowrap transition"
 					>
 						<LogoutOutlined />
 						<span className="ms-2 font-semibold">
@@ -95,8 +83,8 @@ export function Sidebar() {
 				)}
 				{status === 'unauthenticated' && (
 					<button
-						onClick={async () => await signIn('keycloak')}
-						className="text-start sidebar-item overflow-hidden text-nowrap mt-8 cursor-pointer hover:text-secondary transition mb-2"
+						onClick={() => signIn('keycloak')}
+						className="sidebar-item hover:text-secondary mt-8 mb-2 cursor-pointer overflow-hidden text-start text-nowrap transition"
 					>
 						<LoginOutlined />
 						<span className="ms-2 font-semibold">

@@ -29,11 +29,11 @@ export function LanguageSelector() {
 	return (
 		<div>
 			<Menu>
-				<MenuButton className="cursor-pointer mx-4 transition duration-300 border border-gray-200 dark:border-gray-800 px-6 py-3 flex items-center rounded-xl w-52">
+				<MenuButton className="mx-4 flex w-52 cursor-pointer items-center rounded-xl border border-gray-200 px-6 py-3 transition duration-300 dark:border-gray-800">
 					<Image
 						src={`locales/${locale}.svg`}
 						alt=""
-						className="rounded-md me-4"
+						className="me-4 rounded-md"
 						width={40}
 						height={20}
 					/>
@@ -42,17 +42,17 @@ export function LanguageSelector() {
 				</MenuButton>
 				<MenuItems
 					anchor="top start"
-					className="flex flex-col cursor-pointer border border-gray-200 dark:border-gray-800 rounded-xl w-52"
+					className="flex w-52 cursor-pointer flex-col rounded-xl border border-gray-200 dark:border-gray-800"
 				>
 					<MenuItem
 						as="div"
-						className="flex ps-6 pe-9 py-3 border-b border-b-gray-200 dark:border-b-gray-800"
+						className="flex border-b border-b-gray-200 py-3 ps-6 pe-9 dark:border-b-gray-800"
 						onClick={() => changeLanguage('pt-BR')}
 					>
 						<Image
 							src={`locales/pt-BR.svg`}
 							alt=""
-							className="rounded-md me-4"
+							className="me-4 rounded-md"
 							width={40}
 							height={20}
 						/>
@@ -60,13 +60,13 @@ export function LanguageSelector() {
 					</MenuItem>
 					<MenuItem
 						as="div"
-						className="flex ps-6 pe-9 py-3"
+						className="flex py-3 ps-6 pe-9"
 						onClick={() => changeLanguage('en-US')}
 					>
 						<Image
 							src={`locales/en-US.svg`}
 							alt=""
-							className="rounded-md me-4"
+							className="me-4 rounded-md"
 							width={40}
 							height={20}
 						/>

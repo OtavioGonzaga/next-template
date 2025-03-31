@@ -4,7 +4,7 @@ export function Card({
 	children: React.ReactNode;
 }>) {
 	return (
-		<div className="max-w-full p-8 transition duration-300 bg-white border border-gray-200 rounded-4xl shadow-sm dark:bg-gray-900 dark:border-gray-700">
+		<div className="max-w-full rounded-4xl border border-gray-200 bg-white p-8 shadow-sm transition duration-300 dark:border-gray-700 dark:bg-gray-900">
 			{children}
 		</div>
 	);

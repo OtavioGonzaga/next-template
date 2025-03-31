@@ -5,10 +5,10 @@ export default function Loading({
 	...props
 }: Readonly<HTMLAttributes<HTMLDivElement>>) {
 	return (
-		<div className="flex justify-center items-center h-screen">
+		<div className="flex h-screen items-center justify-center">
 			<div
 				{...props}
-				className={`${className} w-10 h-10 border-4 border-gray-300 border-t-primary rounded-full animate-spin`}
+				className={`${className} border-t-primary h-10 w-10 animate-spin rounded-full border-4 border-gray-300`}
 			></div>
 		</div>
 	);

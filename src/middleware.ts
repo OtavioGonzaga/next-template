@@ -11,10 +11,11 @@ export default auth(async (req) => {
 		)
 	) {
 		const newUrl = new URL('/login', req.nextUrl.origin);
-
 		newUrl.searchParams.set('callbackUrl', req.nextUrl.pathname);
 
-		return NextResponse.redirect(newUrl);
+		const res = NextResponse.redirect(newUrl);
+
+		return res;
 	}
 
 	return NextResponse.next();
