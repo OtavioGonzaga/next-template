@@ -1,13 +1,17 @@
+import { TranslationsCustomers } from './customers.type';
+
 export type Translations = {
 	dashboard: string;
-	customers: string;
 	settings: string;
+
+	customers: TranslationsCustomers;
 
 	errors: {
 		notFound: string;
 	};
 
 	actions: {
+		actions: string;
 		delete: string;
 		edit: string;
 		save: string;
@@ -23,6 +27,8 @@ export type Translations = {
 
 	fields: {
 		selectEntity: string;
+		name: string;
+		email: string;
 	};
 
 	allRights: string;

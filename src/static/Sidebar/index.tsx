@@ -72,7 +72,9 @@ export function Sidebar() {
 
 				{status === 'authenticated' && (
 					<button
-						onClick={() => signOut()}
+						onClick={() => {
+							signOut();
+						}}
 						className="sidebar-item hover:text-secondary mt-8 mb-2 cursor-pointer overflow-hidden text-start text-nowrap transition"
 					>
 						<LogoutOutlined />

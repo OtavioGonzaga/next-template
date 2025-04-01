@@ -1,15 +1,20 @@
-import { Translations } from '../translations.type';
+import { Translations } from '../types/translations.type';
 
 const ptBr: Translations = {
 	dashboard: 'Dashboard',
-	customers: 'Clientes',
 	settings: 'Configurações',
+
+	customers: {
+		customer: 'Cliente',
+		customers: 'Clientes',
+	},
 
 	errors: {
 		notFound: 'A página que você está procurando não existe.',
 	},
 
 	actions: {
+		actions: 'Ações',
 		delete: 'Excluir',
 		edit: 'Editar',
 		save: 'Salvar',
@@ -25,6 +30,8 @@ const ptBr: Translations = {
 
 	fields: {
 		selectEntity: 'Selecione o {{entity}}',
+		name: 'Nome',
+		email: 'E-mail',
 	},
 
 	allRights: 'Todos os direitos reservados.',

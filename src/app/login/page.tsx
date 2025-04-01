@@ -1,4 +1,3 @@
-// src/app/login/page.tsx
 'use client';
 
 import Loading from '@components/Loading';
@@ -28,5 +27,5 @@ export default function Login() {
 		return <Loading />;
 	}
 
-	return null;
+	return <section></section>;
 }

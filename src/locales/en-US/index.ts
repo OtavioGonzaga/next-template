@@ -1,15 +1,21 @@
-import { Translations } from '../translations.type';
+import { Translations } from '../types/translations.type';
 
 const enUs: Translations = {
 	dashboard: 'Dashboard',
-	customers: 'Customers',
+
 	settings: 'Settings',
+
+	customers: {
+		customer: 'Customer',
+		customers: 'Customers',
+	},
 
 	errors: {
 		notFound: 'The page you are looking for does not exist.',
 	},
 
 	actions: {
+		actions: 'Actions',
 		delete: 'Delete',
 		edit: 'Edit',
 		save: 'Save',
@@ -25,6 +31,8 @@ const enUs: Translations = {
 
 	fields: {
 		selectEntity: 'Select the {{entity}}',
+		name: 'Name',
+		email: 'Email',
 	},
 
 	allRights: 'All rights reserved.',

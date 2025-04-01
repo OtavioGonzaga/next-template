@@ -35,7 +35,7 @@ export function SideMenuProvider({
 				icon: <DashboardOutlined />,
 			},
 			{
-				title: t('customers'),
+				title: t('customers.customers'),
 				path: '/customers',
 				icon: <GroupOutlined />,
 			},
