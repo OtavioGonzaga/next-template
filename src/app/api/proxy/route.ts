@@ -19,15 +19,16 @@ const handler = auth(async (req) => {
 		if (error instanceof AxiosError) {
 			return new Response(error.cause?.message, { status: error.status });
 		}
+		return new Response('Internal error', { status: 500 });
 	}
-});
+}) as never;
 
 export {
-	handler as DELETE,
 	handler as GET,
-	handler as HEAD,
-	handler as OPTIONS,
-	handler as PATCH,
-	handler as POST,
 	handler as PUT,
+	handler as POST,
+	handler as HEAD,
+	handler as PATCH,
+	handler as DELETE,
+	handler as OPTIONS,
 };
