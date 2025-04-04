@@ -4,6 +4,8 @@ import KeycloakProvider from 'next-auth/providers/keycloak';
 declare module 'next-auth' {
 	interface Session {
 		accessToken?: string;
+		companyId?: string;
+		systemId?: string;
 	}
 }
 

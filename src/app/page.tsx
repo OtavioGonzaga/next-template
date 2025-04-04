@@ -1,10 +1,6 @@
 import { Card } from '@components/Card';
 
 export default function Dashboard() {
-	fetch(`http://localhost:3000/api/proxy`).then((res) => {
-		console.log(res);
-	});
-
 	return (
 		<Card>
 			<p>

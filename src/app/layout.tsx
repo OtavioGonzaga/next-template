@@ -10,6 +10,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { SessionProvider } from 'next-auth/react';
 import { Session } from 'next-auth';
+import React from 'react';
 
 const inter = Inter({
 	variable: '--font-inter',
@@ -31,29 +32,31 @@ export default async function RootLayout({
 	const locale = await getLocale();
 
 	return (
-		<html lang={locale}>
-			<NextIntlClientProvider>
-				<ThemeProvider>
-					<body
-						className={`${inter.variable} bg-background dark:bg-dark-background relative flex h-screen flex-col overflow-x-hidden antialiased transition-colors dark:text-white`}
-					>
-						<SessionProvider session={session}>
-							<div className="flex h-full">
-								<SideMenuProvider>
-									<Sidebar />
-								</SideMenuProvider>
-								<div className="flex flex-1 flex-col">
-									<Header />
-									<main className="mt-4 flex flex-1 flex-col justify-between overflow-auto p-6">
-										{children}
-										<Footer />
-									</main>
+		<React.StrictMode>
+			<html lang={locale}>
+				<NextIntlClientProvider>
+					<ThemeProvider>
+						<body
+							className={`${inter.variable} bg-background dark:bg-dark-background relative flex h-screen flex-col overflow-x-hidden antialiased transition-colors dark:text-white`}
+						>
+							<SessionProvider session={session}>
+								<div className="flex h-full">
+									<SideMenuProvider>
+										<Sidebar />
+									</SideMenuProvider>
+									<div className="flex flex-1 flex-col">
+										<Header />
+										<main className="mt-4 flex flex-1 flex-col justify-between overflow-auto p-6">
+											{children}
+											<Footer />
+										</main>
+									</div>
 								</div>
-							</div>
-						</SessionProvider>
-					</body>
-				</ThemeProvider>
-			</NextIntlClientProvider>
-		</html>
+							</SessionProvider>
+						</body>
+					</ThemeProvider>
+				</NextIntlClientProvider>
+			</html>
+		</React.StrictMode>
 	);
 }
